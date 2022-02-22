@@ -28,7 +28,7 @@
             return self::$content;
         }
 
-        public function home() {
+        public function allOrders() {
             echo "jlasfçkd";
         }
 
@@ -38,7 +38,7 @@
             
             $endpoint = $this->url;  
             $endpoint_teste = $this->url_teste;
-            
+
 
             $this->headers[] = "start: $start";
             $this->headers[] = "finish: $finish";
@@ -75,6 +75,7 @@
 
             echo $result["output"];
 
+            
             /*
 
             if( is_array($object) || is_object($object) ) {
