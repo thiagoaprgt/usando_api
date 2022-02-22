@@ -69,18 +69,7 @@
 
 
    
-
-
-
-    if($teste == true) {
-
-        $content = file_get_contents("templates/section/listarProdutos_teste.html");
-
-    }else {
-
-        $content = file_get_contents("templates/section/listarProdutos.html");
-
-    }
+    $content = $stokki::getContent();  
 
 
     $content .=  $output;

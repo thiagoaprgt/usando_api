@@ -3,8 +3,33 @@
 
     class Stokki_pedidos extends Stokki {
 
+        private static $content;
+
         public function __construct() {
             parent::__construct();
+
+            $teste = Stokki::getTest();
+
+            if($teste == true) {
+
+                $content = "Página dos pedidos: Ambiente de teste";
+        
+            }else {
+        
+                $content = "Página dos pedidos: Ambiente final que vai para a produção";
+        
+            }
+
+            self::$content = $content;
+
+        }
+
+        public static function getContent() {
+            return self::$content;
+        }
+
+        public function home() {
+
         }
 
         public function listAllOrderedWithInvoice(string $start = "", string $finish = "", int $page = 1, int $per_page = 100) {

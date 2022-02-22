@@ -4,10 +4,30 @@
 
     class Stokki_produtos extends Stokki {
 
+        private static $content;
+
         public function __construct() {
 
             parent::__construct();
 
+            $teste = Stokki::getTest();
+
+            if($teste == true) {
+
+                $content = file_get_contents("templates/section/listarProdutos_teste.html");
+        
+            }else {
+        
+                $content = file_get_contents("templates/section/listarProdutos.html");
+        
+            }
+
+            self::$content = $content;
+
+        }
+
+        public static function getContent() {
+            return self::$content;
         }
 
 
@@ -175,7 +195,7 @@
 
 
             Transaction::close();
-            
+
         }
 
     }

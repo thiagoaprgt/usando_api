@@ -10,6 +10,8 @@
         protected $http;
         protected $activeRecord;
 
+        private static $content;
+
         protected static $teste;
         protected static $debugHeader;
 
@@ -32,6 +34,21 @@
                 "password: $password"        
                 
             ];
+
+            $teste = Stokki::getTest();
+
+            if($teste == true) {
+
+                $content = file_get_contents("templates/section/listarProdutos_teste.html");
+        
+            }else {
+        
+                $content = file_get_contents("templates/section/listarProdutos.html");
+        
+            }
+
+            self::$content = $content;
+
 
             $this->http = new Http;
 
