@@ -38,14 +38,25 @@
 
             if(!empty($_GET["method"]) && count($_GET) > 1 ) {
 
+
+                if( isset($_GET["class"]) && !empty($_GET["class"]) ) {
+
+                   
+                    array_shift($_GET);
+
+                }
                                 
                 $method = $_GET["method"];
 
-                array_shift($_GET);
+                array_shift($_GET);  
+                
 
                 $action = call_user_func_array( array($this, $method), $_GET );
-
-                print_r($action["table"]);
+                
+                if(isset($action["table"])) {
+                    print_r($action["table"]);
+                }
+                
 
 
             }else if( !empty($_GET["method"]) ) {

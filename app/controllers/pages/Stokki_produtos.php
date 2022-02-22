@@ -135,7 +135,7 @@
         public function saveAllProducts() {
 
             $data = $this->listAllProducts();
-
+            
             $products_data = json_decode( $data["output"] );
 
             Transaction::open("database");
@@ -175,6 +175,7 @@
 
 
             Transaction::close();
+            
         }
 
     }

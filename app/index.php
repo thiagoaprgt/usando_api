@@ -22,14 +22,11 @@
         se a activeDebugRequires for true ele mostra todos os require_once feitos.
     */
 
-    $register = $al->register();
-
-    
-
-    
+    $register = $al->register();  
 
     $content = "";
     $output = ""; 
+
 
         
     Stokki::setTest(true); // ao colocar true será usada a api_teste 
@@ -42,6 +39,8 @@
     $debuHeader = Stokki::getDebugHeader();
 
 
+
+    
     
 
     $template = file_get_contents("templates/home.html");
@@ -49,11 +48,18 @@
     $template = str_replace("{{content}}", $content, $template);
 
 
-    ob_start(); // gerenciador de output   
+    $class = "Stokki_produtos";
+    
 
+    ob_start(); // gerenciador de output
+    
+    if( isset($_GET["class"]) && !empty($_GET["class"]) ) {
 
-    $stokki = new Stokki_produtos;
-   
+        $class = $_GET["class"];
+
+    }
+
+    $stokki = new $class;   
 
     $output = ob_get_contents();
 
