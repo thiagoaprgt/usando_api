@@ -1,12 +1,16 @@
-# usando_a_api_da_empresa_stokki
+# Projeto usando_a_api_da_empresa_stokki
 
-# Os atributos href das tag a do html estão definidos para funcionar no 
+# Instruções:
 
-# endereço: localhost/usando_a_api_da_empresa_stokki
+Os atributos href das tag a do html estão definidos para funcionar no 
 
-# Se o uso não for no caminho acima então será preciso mudar essa informação no href 
+endereço: localhost/usando_a_api_da_empresa_stokki
 
-# nos arquivos da pasta templates 
+Se o uso não for no caminho acima então será preciso mudar essa informação no href 
+
+ nos arquivos da pasta templates 
+
+# Funcionalidades:
 
 Há uma automatização de require_once através da classe Autoload.
 
@@ -18,12 +22,15 @@ O modo de desenvolvimento usa os dados da api_teste que foi baseado no modo de p
 
 O modo de produção usa os dados fornecidos pela API da empresa STOKKI.
 
+# Detalhes do sistema:
 
-# A API de teste e o banco de dados que API de teste usa foram criados baseado no informações
+A API de teste e o banco de dados que API de teste usa foram criados baseado no informações
 
-# do response que mostrado na documentação da Empresa STOKKI.
+do response que é mostrado na documentação da Empresa STOKKI.
 
-# Link da documentação da API da empresa STOKKI: [https://sites.google.com/vnda.com.br/docs/api]
+Link da documentação da API da empresa STOKKI: [https://sites.google.com/vnda.com.br/docs/api]
+
+O banco de dados da API é diferente do banco de dados usa pelo ERP (Enterprise Resource Planning) na pasta app
 
 
 
