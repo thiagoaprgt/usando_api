@@ -48,6 +48,15 @@
 
         }
 
+        public static function authorization() {
+
+           $headers = getallheaders();
+           $authorization = $headers["Authorization"];
+
+            return $authorization;
+
+        }
+
         public function products() {
         
             if($_GET["method"] == "products") {
@@ -151,6 +160,27 @@
 
                 }
                 
+            }
+
+        }
+
+        public function orders() {
+
+            echo "orders";
+
+        }
+
+        public function listAllOrdersWithInvoice() {
+           
+           
+
+            echo "<pre>";
+            print_r(getallheaders());
+            echo "</pre>";
+
+            if(isset($_GET["teste"]) && $_GET["teste"] == true) {
+                $headers = get_headers($url);
+
             }
 
         }

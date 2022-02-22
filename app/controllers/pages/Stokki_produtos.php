@@ -37,8 +37,7 @@
 
             $endpoint = $this->url . "products";
             $endpoint_teste = $this->url_teste;
-
-            
+                        
             $http = $this->http;
 
             if(self::$teste == false) {  

@@ -12,11 +12,11 @@
 
             if($teste == true) {
 
-                $content = "Página dos pedidos: Ambiente de teste";
+                $content = "Página dos pedidos: Ambiente de teste <br><br>";
         
             }else {
         
-                $content = "Página dos pedidos: Ambiente final que vai para a produção";
+                $content = "Página dos pedidos: Ambiente final que vai para a produção<br><br>";
         
             }
 
@@ -29,15 +29,16 @@
         }
 
         public function home() {
-
+            echo "jlasfçkd";
         }
 
-        public function listAllOrderedWithInvoice(string $start = "", string $finish = "", int $page = 1, int $per_page = 100) {
+        public function listAllOrdersWithInvoice(string $start = "", string $finish = "", int $page = 1, int $per_page = 100) {
             // invoice = nota fiscal 
             // o máximo número do parâmetro per_page é 100 segundo a documentação da api da empresa Stokki
             
             $endpoint = $this->url;  
             $endpoint_teste = $this->url_teste;
+            
 
             $this->headers[] = "start: $start";
             $this->headers[] = "finish: $finish";
@@ -45,7 +46,7 @@
             $this->headers[] = "per_page: $per_page";
 
             $data = [
-                "method" => "listAllOrderedWithInvoice"
+                "method" => "listAllOrdersWithInvoice" 
             ];
 
             $api = $this->http;
@@ -72,6 +73,10 @@
 
             $object = json_decode($result["output"]);
 
+            echo $result["output"];
+
+            /*
+
             if( is_array($object) || is_object($object) ) {
 
                 // isso foi feito para reaproveitar a funnção
@@ -86,6 +91,8 @@
                 return $result["output"];
 
             }
+
+            */
 
 
 

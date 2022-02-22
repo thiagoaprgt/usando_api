@@ -3,7 +3,20 @@
 
     require_once "../controllers/api.php";
 
-    $api = new Api;
+
+    $authorization = Api::authorization();
+
+    if($authorization == "Bearer token") {
+
+        $api = new Api;
+
+    }else{
+
+        echo "Acesso negado";
+       
+    }
+
+    
 
 
 
