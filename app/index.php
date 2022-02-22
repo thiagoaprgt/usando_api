@@ -14,7 +14,7 @@
 
     // Debugando o autoload
 
-    Autoload::activeDebugRequires(true); 
+    Autoload::activeDebugRequires(false); 
 
     
     /*
