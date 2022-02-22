@@ -24,13 +24,15 @@ O modo de produção usa os dados fornecidos pela API da empresa STOKKI.
 
 # Detalhes do sistema:
 
-A API de teste e o banco de dados que API de teste usa foram criados baseado no informações
+A  API de teste e o banco de dados que API de teste usa   foram criados baseado nas informações
 
 do response que é mostrado na documentação da Empresa STOKKI.
 
 Link da documentação da API da empresa STOKKI: [https://sites.google.com/vnda.com.br/docs/api]
 
-O banco de dados da API é diferente do banco de dados usa pelo ERP (Enterprise Resource Planning) na pasta app
+O banco de dados da API é diferente do banco de dados usado pelo ERP (Enterprise Resource Planning).
+
+O ERP é a aplicação que está na pasta app.
 
 
 
