@@ -29,7 +29,7 @@
 
 
         
-    Stokki::setTest(true); // ao colocar true será usada a api_teste 
+    Stokki::setTest(false); // ao colocar true será usada a api_teste 
 
     $teste = Stokki::getTest();     
 

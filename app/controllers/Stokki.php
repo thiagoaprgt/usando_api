@@ -83,13 +83,6 @@
 
                 echo "Faça uma busca na API";
 
-                print_r($_GET);
-
-                
-
-                
-                
-
             }
 
 

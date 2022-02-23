@@ -9,8 +9,14 @@
 
             $file = $this->upload($_FILES);
 
-            $this->saveInformationDatabase($file, $_GET["id"]);
+            print_r($_GET["id"]);
+            try{
 
+                $this->saveInformationDatabase($file, $_GET["id"]);
+
+            }catch(Exception $e) {
+                echo $e->getMessage();
+            }
 
         }
 
@@ -93,7 +99,7 @@
             Transaction::open("database");
 
             $array = $file;
-
+     
             $array["id_pedidos"] = $id_pedidos;
 
 
@@ -101,7 +107,9 @@
             print_r($array);
             echo "</pre>";
 
-            $table = new Arquivos;            
+            $table = new Arquivos;
+            
+            
             
             if(isset($table->id)) {
 

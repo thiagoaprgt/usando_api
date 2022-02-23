@@ -27,7 +27,7 @@
             return self::$content;
         }
 
-        public function allOrders(/*string $start = "", string $finish = "", int $page = 1, int $per_page = 100 */) {
+        public function allOrders() {
 
             // invoice = nota fiscal 
             // o máximo número do parâmetro per_page é 100 segundo a documentação da api da empresa Stokki
@@ -36,14 +36,7 @@
             $endpoint = $this->url;  
             $endpoint_teste = $this->url_teste;
 
-                /*                    
-            $this->headers[] = "start: $start";
-            $this->headers[] = "finish: $finish";
-            $this->headers[] = "page: $page";
-            $this->headers[] = "per_page: $per_page";
-
-            */
-            
+                    
 
             $data = [
                 "method" => "allOrders" 
@@ -309,11 +302,11 @@
                     
 
                 }else {
-                    
+                    // provalmente é foreign key das notas fiscais que chama a tabela pedido, a api não deixa claro
                     $row .= str_replace(
 
-                        ["{{trData}}", "{{tdDownload}}"], 
-                        [$rowData, $download], 
+                        ["{{trData}}", "{{tdDownload}}", "{{id}}"], 
+                        [$rowData, $download, $obj_vars["series"] ], 
                         $tr
 
                     );                
