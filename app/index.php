@@ -50,6 +50,7 @@
 
     $class = "Stokki_produtos";
     
+    
 
     ob_start(); // gerenciador de output
     
@@ -77,6 +78,21 @@
     $template = file_get_contents("templates/home.html");
 
     $template = str_replace("{{content}}", $content, $template);
+    
+
+    if(isset($_REQUEST["method"])){
+
+        $method = $_REQUEST["method"];
+
+        $url = "http://localhost/usando_a_api_da_empresa_stokki/app/?class=$class&method=$method";
+
+    }else {
+        $url = "http://localhost/usando_a_api_da_empresa_stokki/app/";
+    }
+
+    
+        
+    $template = str_replace("{{endpoint}}", $url, $template);
 
     echo $template;
 

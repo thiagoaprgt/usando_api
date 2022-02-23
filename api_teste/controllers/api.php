@@ -63,7 +63,7 @@
                 
                 
 
-                //$sql = "SELECT * FROM produtos"; 
+                
 
                 $sql = "SELECT `id`, `name`, `available`, `sale_price`, `updated_at` FROM produtos";  
 
@@ -164,9 +164,31 @@
 
         }
 
-        public function orders() {
+        public function allOrders() {
 
-            echo "orders";
+            $headers = getallheaders(); // retorna um array com todos cabeçalhos HTTP 
+
+            if(isset($headers["invoiced"]) && $headers["invoiced"] = true ) {
+
+                $sql = "SELECT id, invoiced, total, items, email FROM pedidos WHERE invoiced > 0";
+
+            }else {
+
+                $sql = "SELECT id, invoiced, total, items, email FROM pedidos";
+
+            }
+
+           
+
+            $prepare = $this->conn->prepare($sql);
+
+            $prepare->execute();
+
+            $result = $prepare->fetchAll(PDO::FETCH_OBJ);
+
+            $json = json_encode($result);    
+
+            echo $json; 
 
         }
 

@@ -9,9 +9,7 @@
         protected $info;
         protected $http;
         protected $activeRecord;
-
-        private static $content;
-
+        
         protected static $teste;
         protected static $debugHeader;
 
@@ -36,18 +34,6 @@
             ];
 
             $teste = Stokki::getTest();
-
-            if($teste == true) {
-
-                $content = file_get_contents("templates/section/listarProdutos_teste.html");
-        
-            }else {
-        
-                $content = file_get_contents("templates/section/listarProdutos.html");
-        
-            }
-
-            self::$content = $content;
 
 
             $this->http = new Http;
@@ -91,9 +77,11 @@
 
             }else {
 
-                echo "Not Found";
+                echo "Faça uma busca na API";
 
             }
+
+            
             
            
 
@@ -190,7 +178,23 @@
     
             return $table;
     
-        }        
+        }    
+        
+        public function getUrl() {
+
+            $teste = self::getTest();
+
+            if($teste == false) {
+
+                return $this->url;
+
+            }else {
+
+                return $this->url_teste;
+
+            }
+
+        }
 
 
     }
