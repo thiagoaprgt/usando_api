@@ -166,18 +166,10 @@
 
         public function allOrders() {
 
-            $headers = getallheaders(); // retorna um array com todos cabeçalhos HTTP 
+            $headers = getallheaders(); // retorna um array com todos cabeçalhos HTTP      
 
-            if(isset($headers["invoiced"]) && $headers["invoiced"] = true ) {
 
-                $sql = "SELECT id, invoiced, total, items, email FROM pedidos WHERE invoiced > 0";
-
-            }else {
-
-                $sql = "SELECT id, invoiced, total, items, email FROM pedidos";
-
-            }
-
+            $sql = "SELECT id, total, items, email FROM pedidos";
            
 
             $prepare = $this->conn->prepare($sql);
@@ -194,16 +186,31 @@
 
         public function listAllOrdersWithInvoice() {
            
+            $headers = getallheaders(); // retorna um array com todos cabeçalhos HTTP 
+            
+
+            $sql = "
+
+                SELECT number, `key`, series, total, items, email 
+                from notasficais 
+                inner join pedidos 
+                on pedidos.id = notasficais.series
+
+            ";
+
            
 
-            echo "<pre>";
-            print_r(getallheaders());
-            echo "</pre>";
+            $prepare = $this->conn->prepare($sql);
 
-            if(isset($_GET["teste"]) && $_GET["teste"] == true) {
-                $headers = get_headers($url);
+            $prepare->execute();
 
-            }
+            $result = $prepare->fetchAll(PDO::FETCH_OBJ);
+
+            $json = json_encode($result);    
+
+            echo $json; 
+
+            
 
         }
 

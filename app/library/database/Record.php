@@ -245,7 +245,7 @@
 
                 // cria mensagem de log e executa a consulta
 
-                Transaction::log($sql);
+                //Transaction::log($sql);
                 $result = $conn->query($sql);
 
                 // se retornou algum dado
@@ -313,15 +313,7 @@
 
             if($conn = Transaction::get()) {
 
-                // instancia a instrução de SELECT
-
-                $sql = "SELECT id FROM {$this->getEntity()} WHERE id=null ";
-
-                $result = $conn->query($sql);
-                $null_ID = $result->fetch();
-                
-
-                
+               
 
                 // instancia a instrução de SELECT
 

@@ -2,7 +2,7 @@
 
     require_once "library/Autoload.php";
     
-    Autoload::activeDebugRequires(true);
+   
 
     $al = new Autoload();
 
@@ -34,7 +34,7 @@
     $teste = Stokki::getTest();     
 
 
-    Stokki::setDebugHeader(false); // ao colocar mostra o cabeçalho HTTP que enviado pelos métodos que fazem requisições
+    Stokki::setDebugHeader(true); // ao colocar mostra o cabeçalho HTTP que é enviado pelos métodos que fazem requisições
 
     $debuHeader = Stokki::getDebugHeader();
 

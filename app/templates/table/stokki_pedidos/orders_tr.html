@@ -2,12 +2,22 @@
     {{trData}}   
 
     <td>
-        <input type="file" name="{{uploadName}}">
+        <form enctype="multipart/form-data" method="post"  action="http://localhost/usando_a_api_da_empresa_stokki/app/?class=Upload&method=upload&id={{id}}" >
+            <input type="file" name="arquivo">  
+              
+        
+            <button class="btn btn-info" type="submit">Enviar</button>
+        </form>
+        
+        
     </td>
 
-    <td>
-        {{tdDownload}}
-    </td>
+    <!--
+        
+        <td>{{tdDownload}}</td>
+
+    -->
+
 
 </tr>
 
