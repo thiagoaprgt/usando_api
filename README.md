@@ -22,17 +22,40 @@ O modo de desenvolvimento usa os dados da api_teste que foi baseado no modo de p
 
 O modo de produção usa os dados fornecidos pela API da empresa STOKKI.
 
+Há um botão que armazena os dados da API no banco de dados.
+
+Foi adicionado sistema de upload de xml.
+
 # Detalhes do sistema:
 
-A  API de teste e o banco de dados que API de teste usa   foram criados baseado nas informações
+Na pasta app/config é onde se define as configurações
 
-do response que é mostrado na documentação da Empresa STOKKI.
+do sistema (ERP) como token e conexão com o banco de dados.
 
-Link da documentação da API da empresa STOKKI: [https://sites.google.com/vnda.com.br/docs/api]
+Na pasta api_teste/config armazena as configurações da api_teste.
 
-O banco de dados da API é diferente do banco de dados usado pelo ERP (Enterprise Resource Planning).
+No index da api_teste se define a senha do token (authorization)
 
-O ERP é a aplicação que está na pasta app.
+do cabeçalho http.
+
+# Banco de dados
+
+Foram utilizadas quatro tabelas
+
+produto, pedidos, notasficais, arquivos.
+
+As colunas pertencentes a elas são os response 
+
+descritos na documentação.
+
+O response series da Tabela 'notasficais' foi
+
+usado como chave estrangeira se referindo a chave
+ 
+primária da tabela pedidos.
+
+
+
 
 
 
