@@ -33,7 +33,7 @@
             // o máximo número do parâmetro per_page é 100 segundo a documentação da api da empresa Stokki
             
 
-            $endpoint = $this->url;  
+            $this->url = $this->url . "orders";  
             $endpoint_teste = $this->url_teste;
 
                     
@@ -47,7 +47,7 @@
 
             if(self::$teste == false) {
 
-                $result = $api->get($endpoint, $data, $this->headers);
+                $result = $api->get($this->url, $data, $this->headers);
 
             }else if(self::$teste == true) {
 
@@ -91,7 +91,7 @@
             // o máximo número do parâmetro per_page é 100 segundo a documentação da api da empresa Stokki
             
 
-            $endpoint = $this->url;  
+            $this->url = $this->url . "orders";   
             $endpoint_teste = $this->url_teste;
 
             $this->headers[] = "invoiced: true";                                    
@@ -110,7 +110,7 @@
 
             if(self::$teste == false) {
 
-                $result = $api->get($endpoint, $data, $this->headers);
+                $result = $api->get($this->url, $data, $this->headers);
 
             }else if(self::$teste == true) {
 

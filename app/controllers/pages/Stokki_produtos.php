@@ -27,7 +27,7 @@
 
             // $endpoint = "https://demo.vnda.com.br/api/v2/" . "products";
 
-            $endpoint = $this->url . "products";
+            $this->url = $this->url . "products";
             $endpoint_teste = $this->url_teste;
                         
             $http = $this->http;
@@ -35,7 +35,7 @@
             if(self::$teste == false) {  
                 
                 
-                $result = $http->get($endpoint, $data = [], $this->headers );
+                $result = $http->get($this->url, $data = [], $this->headers );
                 
 
             }else {     
@@ -83,27 +83,32 @@
 
         public function selectProducts($column_names, $searched_column, $constraints, $searched_column_value, $debugHeader = false) {
 
-            $endpoint = $this->url;  
-            $endpoint_teste = $this->url_teste;  
+            $this->url = $this->url . "products/search";  
+            $endpoint_teste = $this->url_teste;                      
 
-        
 
-            $data = [ 
-            
-            "method" => "selectProducts",
-            "column_names" => $column_names,
-            "searched_column" => $searched_column,
-            "constraints" => $constraints,
-            "searched_column_value" => $searched_column_value 
-            ];
+            $this->headers[] = "max_price: 320";
+            $this->headers[] = "min_price:  41";
+
 
             $api = $this->http;
 
             if(self::$teste == false) {
 
-                $result = $api->post($endpoint, $data, $this->headers);
+                $data = [];
+
+                $result = $api->post($this->url, $data, $this->headers);
 
             }else if(self::$teste == true) {
+
+                $data = [ 
+            
+                    "method" => "selectProducts",
+                    "column_names" => $column_names,
+                    "searched_column" => $searched_column,
+                    "constraints" => $constraints,
+                    "searched_column_value" => $searched_column_value 
+                    ];
 
                 
                 $result = $api->post($endpoint_teste, $data, $this->headers);
@@ -125,7 +130,7 @@
             
             if( is_array($object) || is_object($object) ) {
 
-                // isso foi feito para reaproveitar a funnção
+                // isso foi feito para reaproveitar a função
 
                 $result["table"] = $this->table($object);           
            
@@ -144,48 +149,56 @@
         
 
         public function saveAllProducts() {
+            try{
 
-            $data = $this->listAllProducts();
+                                               
+
+                $data = $this->listAllProducts();
             
-            $products_data = json_decode( $data["output"] );
-
-            Transaction::open("database");
-
-            $table = new Produtos;                    
-
-            foreach($products_data as $obj) {
-                
-                $objVars = get_object_vars($obj);
-
-                $id = $objVars["id"];
-
-                $table = new Produtos($id);
-
-
-              
-                if(isset($table->id)) {
-
-                    // Já existe no banco de dados
-
-                    $update = $table->load($id);
-                    $update->fromArray($objVars);
-                    $update->store();
+                $products_data = json_decode( $data["output"] );
+    
+                Transaction::open("database");
+    
+                $table = new Produtos;                    
+    
+                foreach($products_data as $obj) {
                     
-
-                }else {
-
-                    //Não existe no banco de dados
-                    $table->fromArray($objVars);
-                    $table->store();
+                    $objVars = get_object_vars($obj);
+    
+                    $id = $objVars["id"];
+    
+                    $table = new Produtos($id);
+    
+    
+                  
+                    if(isset($table->id)) {
+    
+                        // Já existe no banco de dados
+    
+                        $update = $table->load($id);
+                        $update->fromArray($objVars);
+                        $update->store();
+                        
+    
+                    }else {
+    
+                        //Não existe no banco de dados
+                        $table->fromArray($objVars);
+                        $table->store();
+                    }
+                       
+                    
+    
                 }
+    
+    
+                Transaction::close();
 
-               
-                
 
+            }catch(Exception $e) {
+                echo $e->getMessage();
             }
-
-
-            Transaction::close();
+           
 
         }
 

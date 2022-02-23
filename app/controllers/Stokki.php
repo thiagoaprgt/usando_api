@@ -121,6 +121,7 @@
             echo "<pre>";
 
             echo "<br>";
+            echo "<p> Endpoind usado: " . $this->getUrl() . "</p>";
 
             echo "<p>Modo desenvolvedor debug header ativado </p>";
 
@@ -129,6 +130,8 @@
             echo "<p>Stokki::setDebugHeader(true)  para false </p>";
 
             echo "<p>no arquivo localizado em app/index.php </p>";
+
+            echo "<p> Array do cabeçalho HTTP usado nas requições (curl) enviadas para API : </p>";
 
             print_r( curl_getinfo($curl)["request_header"] );
 
@@ -217,118 +220,7 @@
         }
 
 
-        public function upload($id_pedido) {
-
-            if(isset($_FILES["arquivo"])) {
-                
-               try{
-
-                $file = $_FILES["arquivo"];
-
-
-                /*
-                echo "<pre>";
-                print_r($file);
-                echo "</pre>";
-                */
-
-
-                if($file["size"] > 3145728) {
-                    throw new Exception("O arquivo não pode ultrapassar 3 MB");
-                }
-                
-                if($file["error"]) {
-                    throw new Exception("Falha ao enviar o arquivo");
-                }
-
-                $directory = "upload/xml/";
-                $fileName = $file["name"];
-                $newFileName = uniqid();
-
-                $fileExtension = strtolower( pathinfo($fileName, PATHINFO_EXTENSION) );
-
-                if($fileExtension != "xml") {
-                    throw new Exception("Esse arquivo não é um xml");
-                }
-
-                $newDirectory = $directory . $newFileName . "." . $fileExtension;
-
-                $movedFile = move_uploaded_file($file["tmp_name"], $newDirectory);
-
-                if($movedFile) {
-                    echo "Arquivo movido com sucesso.";
-                }else {
-                    echo "Falha ao enviar o arquivo";
-                }
-
-               }catch(Exception $e) {
-                   echo $e->getMessage();
-               }
-
-            }
-
-           
-
-            $fileInfo = [
-
-                "path" => $newDirectory,
-                "file_name" => $fileName,
-                "file_extension" => $fileExtension,
-                "id_produtos" => $id_pedido
-
-            ];
-
-            //print_r($fileInfo);
-
-          
-
-            
-
-        }
-
-        
-
-        protected function call_function_post() {
-
-            if(isset($_POST["class"]) && isset($_POST["method"]) && count($_POST) == 2) {
-
-                $class = $_POST["class"];
-                $method = $_POST["method"];
-
-                
-
-                $action = call_user_function( array($class, $method) );
-
-                return $action;
-
-            }else if( isset($_POST["class"]) && isset($_POST["method"]) && count($_POST) >2 ) {
-
-                $class = $_POST["class"];
-                $method = $_POST["method"];
-
-                foreach($_POST as $k => $v ) {                    
-
-                    if($k != "class" && $k != "method") {
-                        
-                    }
-                  
-
-                }
-
-                echo "<pre>";
-                print_r($class);
-                echo "</pre>";
-                
-
-                
-
-                ;
-
-            }
-
-
-
-        }
+      
 
 
     }
