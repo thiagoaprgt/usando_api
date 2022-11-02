@@ -20,7 +20,7 @@ Há um sistema para debug de problemas.
 
 O modo de desenvolvimento usa os dados da api_teste que foi baseado no modo de produção.
 
-O modo de produção usa os dados fornecidos pela API da empresa STOKKI.
+O modo de produção usa os dados fornecidos pela documentação da API da empresa STOKKI.
 
 Há um botão que armazena os dados da API no banco de dados.
 
